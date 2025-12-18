@@ -21,7 +21,7 @@ static uint32_t colors[][3]                = {
 };
 
 /* tagging */
-static char *tags[] = { "1", "2", "3", "4", "5", "6" };
+static char *tags[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
 
 /* logging */
 static int log_level = WLR_ERROR;
@@ -70,6 +70,7 @@ static const struct xkb_rule_names xkb_rules = {
 	/* can specify fields: rules, model, layout, variant, options */
 	/* example:
 	.options = "ctrl:nocaps",
+	.geometry "
 	*/
 	.options = NULL,
 };
@@ -140,10 +141,6 @@ static const char *filecmd[] = { "thunar", NULL };
 static const char *screencmd[] = { "grim", NULL };
 static const char *steamcmd[] = { "steam", NULL };
 static const char *workwebcmd[]  = { "waterfox", NULL };
-static const char *passcmd[] = { "passmenu", NULL }; 
-static const char *copycmd[] = { "wl-copy", NULL };
-static const char *pastecmd[] = { "wl-paste", NULL };
-static const char *rbxcmd[] = { "flatpak", "run", "org.vinegarhq.Sober", NULL };
 
 static const Key keys[] = {
 	/* Note that Shift changes certain key codes: c -> C, 2 -> at, etc. */
@@ -186,10 +183,7 @@ static const Key keys[] = {
         { MODKEY|WLR_MODIFIER_LOGO,  XKB_KEY_f,          spawn,          {.v = filecmd} },
 	{ MODKEY,                    XKB_KEY_s,          spawn,          {.v = screencmd} },
 	{ MODKEY,                    XKB_KEY_g,          spawn,          {.v = steamcmd} },
-        { MODKEY|WLR_MODIFIER_LOGO,  XKB_KEY_w,          spawn,          {.v = workwebcmd} },
-        { MODKEY|WLR_MODIFIER_LOGO,  XKB_KEY_p,          spawn,          {.v = passcmd} },
-	{ MODKEY|WLR_MODIFIER_LOGO,  XKB_KEY_v,          spawn,          {.v = pastecmd} },
-	{ MODKEY|WLR_MODIFIER_LOGO,  XKB_KEY_r,          spawn,          {.v = rbxcmd} },
+        { MODKEY|WLR_MODIFIER_LOGO,                    XKB_KEY_w,          spawn,          {.v = workwebcmd} },
 
 	/* Ctrl-Alt-Backspace and Ctrl-Alt-Fx used to be handled by X server */
 	{ WLR_MODIFIER_CTRL|WLR_MODIFIER_ALT,XKB_KEY_Terminate_Server, quit, {0} },
@@ -205,7 +199,7 @@ static const Button buttons[] = {
 	{ ClkLtSymbol, 0,      BTN_LEFT,   setlayout,      {.v = &layouts[0]} },
 	{ ClkLtSymbol, 0,      BTN_RIGHT,  setlayout,      {.v = &layouts[2]} },
 	{ ClkTitle,    0,      BTN_MIDDLE, zoom,           {0} },
-	{ ClkStatus,   0,      BTN_MIDDLE, spawn,          {.v = termcmd } },
+	{ ClkStatus,   0,      BTN_MIDDLE, spawn,          {.v = termcmd} },
 	{ ClkClient,   MODKEY, BTN_LEFT,   moveresize,     {.ui = CurMove} },
 	{ ClkClient,   MODKEY, BTN_MIDDLE, togglefloating, {0} },
 	{ ClkClient,   MODKEY, BTN_RIGHT,  moveresize,     {.ui = CurResize} },
